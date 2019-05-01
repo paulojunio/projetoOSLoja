@@ -24,7 +24,9 @@ class Confeccao extends Component {
             </div>
             </div>
             <div className="container-ask">
+            <a href="/resultado">
             <button type="submit" name="encontrar_lucro" className="btn btn-sign-up center-block" id="botao-centro">Encontrar melhor lucro</button>
+            </a>
             </div> 
      </React.Fragment>
     );

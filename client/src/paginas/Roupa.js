@@ -46,7 +46,9 @@ class Roupa extends Component {
       </div>
       <div className="container-ask">
         <button type="submit" name="adicionar_material" className="btn btn-sign-up center-block pull-left">Adicionar roupa</button>
+        <a href="/confeccao">
         <button type="submit" name="adicionar_material" className="btn btn-sign-up center-block pull-right">Proximo passo</button>
+        </a>
      </div>
      </React.Fragment>
     );

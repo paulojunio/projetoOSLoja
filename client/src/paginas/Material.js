@@ -24,7 +24,9 @@ class Material extends Component {
         </div>
       <div className="container-ask">
         <button type="submit" name="adicionar_material" className="btn btn-sign-up center-block pull-left">Adicionar material</button>
+        <a href="/roupa">
         <button type="submit" name="proximo_passo" className="btn btn-sign-up center-block pull-right">Proximo passo</button>
+        </a>
       </div> 
       
     </React.Fragment>
