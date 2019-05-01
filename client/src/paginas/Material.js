@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
-
-import './paginas/cssStyle.css';
+import './cssStyle.css';
 import axios from 'axios';
 
-class App extends Component {
-  
+class Material extends Component {
+
   render() {
     return (
-      <React.Fragment>
-        <div classname="containerundo" id="fundo">
+        <React.Fragment>
+        <div className="containerFundo" id="fundo">
         <div className="container">
           <h1>
             Novo Material
@@ -22,14 +21,15 @@ class App extends Component {
               <input type="number" name="quantidade_material" placeholder="Somente números" className="form-control" id="form-login"/>
           </form>
         </div>
-      </div>
+        </div>
       <div className="container-ask">
         <button type="submit" name="adicionar_material" className="btn btn-sign-up center-block pull-left">Adicionar material</button>
         <button type="submit" name="proximo_passo" className="btn btn-sign-up center-block pull-right">Proximo passo</button>
       </div> 
+      
     </React.Fragment>
     );
   }
 }
 
-export default App;
+export default Material;

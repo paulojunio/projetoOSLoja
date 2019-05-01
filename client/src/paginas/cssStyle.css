@@ -1,0 +1,201 @@
+
+body {
+    background-color: #efc9e4 !important;
+    height:100%;
+    padding-bottom: 20px; 
+}
+
+@font-face {
+  font-family:"Casual Solfcore";
+  src:url("font/Solf_Core.ttf") format("truetype");
+  font-weight:normal;
+  font-style:normal;
+}
+@font-face {
+  font-family:"Dancing Script";
+  src:url("font/DancingScript-Bold.ttf") format("truetype");
+  font-weight:normal;
+  font-style:normal;
+}
+.container{
+
+  font-family: 'Dancing Script' !important;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ffe5e5 ;
+  border-radius: 4px;
+  margin: 0 auto;
+  max-width: 320px;
+  width: 320px;
+  margin-top: 7%;
+
+}
+
+.container h1 {
+
+  font-size: 50px;
+  color: #7977e6;
+  margin-top: 15px;
+  text-align: center;
+}
+
+
+.containerNew{
+
+  font-family: 'Casual Solfcore';
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ffe5e5 ;
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 4%;
+  max-width: 420px;
+  padding-bottom: 15px;
+}
+
+.containerFundo {
+  font-family: 'Casual Solfcore';
+  border-style: solid;
+  border-width: 2px;
+  border-color: #ffe5e5 ;
+  border-radius: 4px;
+  margin: 0 auto;
+  margin-top: 5%;
+  max-width: 420px;
+}
+
+.segundaDiv {
+  margin-top: 2%;
+}
+.containerNew h3 {
+
+  font-size: 25px;
+  color: #7977e6;
+  margin-top: 15px;
+  margin-left: 12px;
+  
+}
+
+
+.col-sm-6 {
+
+  margin: 0 auto;
+  max-width: 320px; 
+}
+
+
+/*form{
+
+
+  text-align: center;
+  margin-top: 20px !important;
+
+}*/
+
+.form-control{
+
+  background-color: #ffe5e5 !important;
+  margin-top: 10px;
+
+
+}
+#fundo {
+  background-color: #ffe5e5 !important;
+}
+#form-login {
+
+  border-radius: 0px;
+  color: #efc9e4  !important;
+  font-size: 22px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 3px solid;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+
+
+}
+
+input {
+
+  margin: 0 auto; 
+  margin-top: 10px; 
+
+}
+
+.btn-sign-up{
+
+  margin-top: 15px;
+
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #efc9e4  !important;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: #efc9e4  !important;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:  #efc9e4  !important;
+   opacity: 1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #efc9e4  !important;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+input[type=date]::-webkit-calendar-picker-indicator {
+    -webkit-appearance: none;
+    display: none;
+}
+
+.btn{
+
+  display: block !important;
+  color: #7977e6;
+  font-size: 25px !important;
+  border:none;
+  background-color: #ffe5e5;
+
+}
+.pull-left {
+  width: 200px; 
+}
+
+.pull-right {
+  width: 200px; 
+}
+.btn:hover{
+
+	color: #efc9e4 !important;
+	
+}
+
+#botao-centro {
+  margin: 0 auto;
+}
+.container-ask {
+
+  background-color: #efc9e4 !important;
+  font-family: 'Casual Solfcore';
+  border-color: #fff ;
+  margin: 0 auto;
+  margin-top: 15px;
+  max-width: 420px;
+}
+
+
