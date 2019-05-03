@@ -9,7 +9,8 @@ class App extends Component {
     super(props);
     this.state = {
       nomMaterial: ['io'],
-      quaMaterial: ['12']
+      quaMaterial: ['12'],
+      material : []
     };
 
     this.addItem = this.addItem.bind(this);
@@ -20,12 +21,16 @@ class App extends Component {
    
     var nomMaterial = [...this.state.nomMaterial];
     var quaMaterial = [...this.state.quaMaterial];
+    const obj = {'nome': this.newNomeMaterial.value, 'quantidade': this.newQuantidadeMaterial.value};
+    this.setState({
+      material: [...this.state.material, obj]
+    })
     nomMaterial.push(this.newNomeMaterial.value);
     quaMaterial.push(this.newQuantidadeMaterial.value);
     this.setState({nomMaterial});
     this.setState({quaMaterial});
-    console.log(this.state.nomMaterial);
-    console.log(this.state.quaMaterial);
+    //console.log(this.state.material.nome);
+    //console.log(this.state.material[1].quantidade);
   }
   render() {
     return (
@@ -47,8 +52,8 @@ class App extends Component {
                 <button type="submit" name="proximo_passo" className="btn btn-sign-up center-block pull-right">Proximo passo</button>
               </div>
               <div>
-              {this.state.nomMaterial.map(function(d, idx){
-                  return (<li key={idx}>{d}</li>)
+              {this.state.material.map(function(d, idx){
+                  return (<li key={idx}>nome: {d.nome} quantidade: {d.quantidade}</li>)
               })}
               </div>
         </div>
