@@ -1,26 +1,47 @@
 import React, {Component} from 'react';
 import './cssStyle.css';
-import axios from 'axios';
+import api from '../api';
+
 
 class Confeccao extends Component {
+  constructor(props) {
+      super(props); 
+      this.state = {
+        todasRoupas : this.props.location.state.roupas,
+        todosMateriais : this.props.location.state.todosMaterial,
+        tempoTotalConf: '',
+        quantidadeCostu: '',
+        respostas: ''
+      }
+  }
+
+    handleTempoConfChange = (event) => (
+        this.setState({
+           tempoTotalConf: event.target.value,
+        })
+    );
+    handleQuantidadeCostChange = (event) => (
+        this.setState({
+            quantidadeCostu: event.target.value,
+        })
+    );
   
-  /*
   otimizar = async () => {
-        let responseMessage = '';
+        let respostaBack = '';
         
         await api.post("/otimizar", this.state).then((response) => {
-           //pegar respostas
+           respostaBack = response.data.optimization;
         });
         
         this.setState({
-            //setar respostas
+            respostas: respostaBack
         })
     };
 
     handleSubmit = (event) => {
         this.otimizar();
         event.preventDefault();
-    };*/
+    };
   render() {
     return (
         <React.Fragment>
@@ -31,20 +52,21 @@ class Confeccao extends Component {
                 </h1>
             </div>
             <div className="containerNew">
-                <form action="post">
+                <form>
                     <h3>Número de costureiras</h3>
-                    <input type="number" name="numero_costureiras" placeholder="Somente números" className="form-control" id="form-login"/>
+                    <input onChange={this.handleChange} value={this.state.cost} type="number" name="numero_costureiras" placeholder="Somente números" className="form-control" id="form-login"/>
                     <h3>Tempo de trabalho (Horas)</h3>
-                    <input type="number" name="tempo_trabalho" placeholder="Somente números" className="form-control" id="form-login"/>
+                    <input onChange={this.handleChange} value={this.state.tempoConfecc} type="number" name="tempo_trabalho" placeholder="Somente números" className="form-control" id="form-login"/>
                     
                 </form>
             </div>
             </div>
             <div className="container-ask">
-            <a href="/resultado">
-            <button type="submit" name="encontrar_lucro" className="btn btn-sign-up center-block" id="botao-centro">Encontrar melhor lucro</button>
-            </a>
+                <button onClick={this.handleSubmit} name="encontrar_lucro" className="btn btn-sign-up center-block" id="botao-centro">Encontrar melhor lucro</button>
             </div> 
+            <div className="containerNew">
+                {this.state.respostas}
+            </div>
      </React.Fragment>
     );
   }
