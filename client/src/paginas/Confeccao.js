@@ -3,7 +3,24 @@ import './cssStyle.css';
 import axios from 'axios';
 
 class Confeccao extends Component {
+  
+  /*
+  otimizar = async () => {
+        let responseMessage = '';
+        
+        await api.post("/otimizar", this.state).then((response) => {
+           //pegar respostas
+        });
+        
+        this.setState({
+            //setar respostas
+        })
+    };
 
+    handleSubmit = (event) => {
+        this.otimizar();
+        event.preventDefault();
+    };*/
   render() {
     return (
         <React.Fragment>
