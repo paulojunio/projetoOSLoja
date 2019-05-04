@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './cssStyle.css';
-import axios from 'axios';
+
 
 class Material extends Component {
 

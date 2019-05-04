@@ -8,11 +8,17 @@ class Confeccao extends Component {
       super(props); 
       this.state = {
         todasRoupas : this.props.location.state.roupas,
-        todosMateriais : this.props.location.state.todosMaterial,
+        materiaisUtilizados: this.props.location.state.todosMateriaisPassados,
         tempoTotalConf: '',
         quantidadeCostu: '',
         respostas: ''
       }
+
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleQuantidadeCostChange = this.handleQuantidadeCostChange.bind(this);
+      this.handleTempoConfChange = this.handleTempoConfChange.bind(this);
+      console.log(this.state);
+      //console.log(this.props.location.state);
   }
 
     handleTempoConfChange = (event) => (
@@ -54,9 +60,9 @@ class Confeccao extends Component {
             <div className="containerNew">
                 <form>
                     <h3>Número de costureiras</h3>
-                    <input onChange={this.handleChange} value={this.state.cost} type="number" name="numero_costureiras" placeholder="Somente números" className="form-control" id="form-login"/>
+                    <input onChange={this.handleQuantidadeCostChange} value={this.state.cost} type="number" name="numero_costureiras" placeholder="Somente números" className="form-control" id="form-login"/>
                     <h3>Tempo de trabalho (Horas)</h3>
-                    <input onChange={this.handleChange} value={this.state.tempoConfecc} type="number" name="tempo_trabalho" placeholder="Somente números" className="form-control" id="form-login"/>
+                    <input onChange={this.handleTempoConfChange} value={this.state.tempoConfecc} type="number" name="tempo_trabalho" placeholder="Somente números" className="form-control" id="form-login"/>
                     
                 </form>
             </div>

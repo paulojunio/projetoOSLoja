@@ -9,6 +9,7 @@ class Roupa extends Component {
     super(props);
     this.state = {
       roupas : [],
+      todosMateriaisPassados: [],
       todosMateriais : this.props.location.state.material,
       valor : this.props.location.state.material[0].nome,
       usaMateriais: []
@@ -31,7 +32,10 @@ class Roupa extends Component {
       roupas: [...this.state.roupas, obj],
       usaMateriais: []
     })
-    
+    var novoArray = this.state.todosMateriais.slice();
+    this.setState({
+      todosMateriaisPassados: novoArray
+    })
     //console.log(this.state.roupas)
   }
   handleChange(event) {
@@ -60,7 +64,7 @@ class Roupa extends Component {
       </div>
       
       <div className ="containerFundo segundaDiv" id="fundo">
-          <div class = "container">
+          <div className = "container">
               <h1>
                 Materias da roupa
               </h1>
@@ -81,8 +85,8 @@ class Roupa extends Component {
         <button onClick={this.addRoupa} name="adicionar_roupa" className="btn btn-sign-up center-block pull-left">Adicionar roupa</button>
         <Link to={{ 
                     pathname: '/confeccao', 
-                    state: { roupas: this.state.roupas,
-                             todosMateriais : this.state.todosMateriais
+                    state: { todosMateriaisPassados : this.state.todosMateriaisPassados, 
+                             roupas: this.state.roupas 
                             }}}>
         <button name="proximo_passo" className="btn btn-sign-up center-block pull-right">Proximo passo</button>
         </Link>
