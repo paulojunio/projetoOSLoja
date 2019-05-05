@@ -11,7 +11,7 @@ class Confeccao extends Component {
         materiaisUtilizados: this.props.location.state.todosMateriaisPassados,
         tempoTotalConf: '',
         quantidadeCostu: '',
-        respostas: ''
+        respostas: []
       }
 
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,7 +33,7 @@ class Confeccao extends Component {
     );
   
   otimizar = async () => {
-        let respostaBack = '';
+        let respostaBack = [];
         
         await api.post("/otimizar", this.state).then((response) => {
            respostaBack = response.data.optimization;
@@ -71,7 +71,9 @@ class Confeccao extends Component {
                 <button onClick={this.handleSubmit} name="encontrar_lucro" className="btn btn-sign-up center-block" id="botao-centro">Encontrar melhor lucro</button>
             </div> 
             <div className="containerNew">
-                {this.state.respostas}
+                {this.state.respostas.map(function(d, idx){
+                  return (<p key={idx}>{d}</p>)
+              })}
             </div>
      </React.Fragment>
     );

@@ -1,4 +1,4 @@
-var glpk = require('glpk');
+/*var glpk = require('glpk');
 
 module.exports = {
     solve:(data,res) => {
@@ -106,4 +106,89 @@ module.exports = {
         res.send({optimization: solvelog});
         
     }
+}*/
+
+module.exports = {
+    solve:(data,res) => {
+		const yasmij = require("yasmij");
+		var linha = 0;
+		var coluna = 0;
+		var materiais = 0;
+		var auxNum = 0;
+		var fObjetive = '';
+		var fConstraints = [];
+	
+		for(linha = 0; linha < data.todasRoupas.length; linha++) {
+			if(linha < data.todasRoupas.length-1) {
+				fObjetive += data.todasRoupas[linha].lucro + data.todasRoupas[linha].nome + " + ";
+			}else{
+				fObjetive += data.todasRoupas[linha].lucro + data.todasRoupas[linha].nome;
+			}
+
+		}
+		console.log("\n Função de maximizar");
+		console.log(fObjetive);
+
+		var auxfObjetive = [];
+		var aux = '';
+		for(linha = 0; linha < (data.materiaisUtilizados.length); linha++){
+			auxfObjetive = [];
+			aux = '';
+			for(coluna = 0; coluna < data.todasRoupas.length; coluna ++){
+				for(materiais = 0; materiais < data.todasRoupas[coluna].materiaisUsados.length; materiais++){
+					if(data.todasRoupas[coluna].materiaisUsados[materiais].nome == data.materiaisUtilizados[linha].nome) {
+						auxfObjetive.push(data.todasRoupas[coluna].materiaisUsados[materiais].quantidade + data.todasRoupas[coluna].nome);
+					}
+				}
+			}
+
+			for(auxNum = 0; auxNum < auxfObjetive.length; auxNum++) {
+				if(auxNum < auxfObjetive.length - 1) {
+					aux += auxfObjetive[auxNum] + " + ";
+				}else {
+					aux += auxfObjetive[auxNum] + " <= " +  data.materiaisUtilizados[linha].quantidade;
+				}
+			}
+			if(aux != '') {
+				fConstraints.push(aux);
+			}
+		}
+
+		var tempoConf = '';
+		for(linha = 0; linha < data.todasRoupas.length; linha++) {
+			if(linha < data.todasRoupas.length - 1) {
+				tempoConf += data.todasRoupas[linha].tempoConf + data.todasRoupas[linha].nome + " + ";
+			}else{
+				tempoConf += data.todasRoupas[linha].tempoConf + data.todasRoupas[linha].nome + " <= " + data.tempoTotalConf*data.quantidadeCostu;
+			}
+		}
+		fConstraints.push(tempoConf);
+		console.log("\n Funçoes de restrições");
+		console.log(fConstraints);
+		var input = {
+			type: "maximize",
+			objective : fObjetive,
+			constraints : fConstraints
+		};
+
+		var output = yasmij.solve(input);
+
+		var respostaVetor = [];
+		respostaVetor.push("O lucro maximo obtido foi " + output.result['z'] + " para isso deve-se fazer as seguintes quantidades de roupas:");
+		var respostaPronta = "O lucro maximo obtido foi " + output.result['z'] + " para isso deve-se fazer as seguintes quantidades de roupas:";
+		
+		for(linha = 0; linha < data.todasRoupas.length; linha++) {
+			if(linha < data.todasRoupas.length - 1) {
+				respostaVetor.push(data.todasRoupas[linha].nome + " : " + output.result[data.todasRoupas[linha].nome] +  " Peças ");
+				//respostaPronta += data.todasRoupas[linha].nome + " : " + output.result[data.todasRoupas[linha].nome] +  " Peças ";
+			}else{
+				respostaVetor.push(data.todasRoupas[linha].nome + " : " + output.result[data.todasRoupas[linha].nome] +  " Peças ");
+				//respostaPronta += data.todasRoupas[linha].nome + " : " + output.result[data.todasRoupas[linha].nome] +  " Peças ";
+			}
+		}
+		console.log(respostaVetor);
+
+		console.log(JSON.stringify(output,null,2));
+		res.send({optimization: respostaVetor});
+	}
 }

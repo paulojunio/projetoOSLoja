@@ -9,7 +9,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.2",
-    "glpk": "0.0.12"
+    "yasmij": "^0.2.6"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"

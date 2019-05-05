@@ -91,15 +91,6 @@ class Roupa extends Component {
         <button name="proximo_passo" className="btn btn-sign-up center-block pull-right">Proximo passo</button>
         </Link>
      </div>
-     <h1>{this.state.valor}</h1>
-
-     <div>
-              {this.state.usaMateriais.map(function(d, idx){
-                  return (<li key={idx}>nome: {d.nome} quantidade: {d.quantidade}</li>)
-              })}
-     </div>
-
-     
      </React.Fragment>
     );
   }

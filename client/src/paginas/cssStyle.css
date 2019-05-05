@@ -53,6 +53,11 @@ body {
   padding-bottom: 15px;
 }
 
+.containerNew p {
+  font-size: 18px;
+  color: #7977e6;
+  text-align: center;
+}
 .containerFundo {
   font-family: 'Casual Solfcore';
   border-style: solid;
