@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const GlpkSolver = require('./GLPK');
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '/client')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,7 +19,7 @@ app.post('/api/otimizar', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+  res.sendFile(path.join(__dirname+'/client/public/index.html'));
 });
 
 const port = process.env.PORT || 5000;
