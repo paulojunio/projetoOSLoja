@@ -18,7 +18,6 @@ module.exports = {
 		for (v_d = 0; v_d < data.todasRoupas.length; v_d ++){
 			//console.log(typeof(data.todasRoupas[v_d].nome));
 			//var nome = data.todasRoupas[v_d].nome;
-			//.log(typeof(v_d));
 			lp.setColName(v_d+1, data.todasRoupas[v_d].nome);
 			lp.setColBnds(v_d+1, glpk.LO, 0,0);
 		}
@@ -28,7 +27,7 @@ module.exports = {
 
 		console.log("Materiais");
 		for (r = 0; r < data.materiaisUtilizados.length; r++){
-			console.log("Aqui dentro");
+			//console.log("Aqui dentro");
 			//console.log(data.materiaisUtilizados[r]);
 			lp.setRowName(r+1, data.materiaisUtilizados[r].nome);
 			lp.setRowBnds(r+1, glpk.UP, 0, parseFloat(data.materiaisUtilizados[r].quantidade));
@@ -74,10 +73,10 @@ module.exports = {
 			}
 		}
 
-		console.log(i);
-		console.log(j);
-		console.log(valor);
-		console.log(((data.todasRoupas.length*(data.materiaisUtilizados.length+1))));
+		//console.log(i);
+		//console.log(j);
+		//console.log(valor);
+		//console.log(((data.todasRoupas.length*(data.materiaisUtilizados.length+1))));
 		lp.loadMatrix(((data.todasRoupas.length*(data.materiaisUtilizados.length+1))), i, j, valor);
 		
 		for (v_d = 0; v_d < data.todasRoupas.length; v_d ++){
@@ -90,20 +89,21 @@ module.exports = {
 		lp.simplexSync(param);
 
 		let z = lp.getObjVal();
-		var all_Cols = new Float64Array(data.todasRoupas.length);
+		var all_Cols = new Array(data.todasRoupas.length);
+		var nomes = new Array(data.todasRoupas.length);
 		for (v_d = 0; v_d < data.todasRoupas.length; v_d ++){
-			all_Cols[v_d] = lp.getColPrim(v_d+1);
+			all_Cols[v_d] = "\n" + data.todasRoupas[v_d].nome + ": " + parseInt(lp.getColPrim(v_d+1));
 		}
 
 		// lp.glpPrintSol();
-		console.log("Teste");
-		console.log(z);
-		console.log(all_Cols);
+		//console.log("Teste");
+		//console.log(z);
+		//console.log(all_Cols);
 
 
         //console.log(data);
-        solvelog = "Deu certo!";
-        res.send({optimization: solvelog})
+        solvelog = "Solução encontrada: \nLucro total:" + z + "\n Quantos produzir: " + all_Cols;
+        res.send({optimization: solvelog});
         
     }
 }
