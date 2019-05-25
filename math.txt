@@ -1,0 +1,14 @@
+var Bermuda;
+var Jaqueta;
+var Calca;
+maximize z:70 * Bermuda + 100 * Jaqueta + 80 * Calca;
+s.t. c1: 5 * Bermuda + 10 * Jaqueta + 10 * Calca <= 120;
+s.t. c2: 5 * Bermuda + 10 * Jaqueta + 5 * Calca <= 100;
+s.t. c3: 5 * Bermuda + 10 * Jaqueta + 10 * Calca <= 80;
+s.t. c4: 5 * Bermuda + 10 * Jaqueta + 10 * Calca <= 80;
+s.t. c5: Bermuda >= 0;
+s.t. c6: Jaqueta >= 0;
+s.t. c7: Calca >= 0;
+solve;
+display Bermuda, Jaqueta, Calca;
+end;

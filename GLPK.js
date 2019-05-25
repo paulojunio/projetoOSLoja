@@ -186,7 +186,95 @@ module.exports = {
 				//respostaPronta += data.todasRoupas[linha].nome + " : " + output.result[data.todasRoupas[linha].nome] +  " Peças ";
 			}
 		}
-		console.log(respostaVetor);
+		
+		var fs = require('fs');
+
+		fs.unlink('math.txt', function (err) {
+			if (err) throw err;
+			// if no error, file has been deleted successfully
+			console.log('File deleted!');
+		}); 
+
+		var logger = fs.createWriteStream('math.txt', {
+			flags: 'a' // 'a' means appending (old data will be preserved)
+		})
+
+		//criar arquivo para glpsol
+		var variaveis = []; // Variaveis aqui
+		for(linha = 0; linha < data.todasRoupas.length; linha++) {
+			aux = "var " + data.todasRoupas[linha].nome + ";";	
+			variaveis.push(aux);
+			logger.write(aux + '\n');
+		}
+		//função objetivo
+		var objectiveFunction = 'maximize z:';
+		for(linha = 0; linha < data.todasRoupas.length; linha++) {
+			if(linha < data.todasRoupas.length-1) {
+				objectiveFunction += data.todasRoupas[linha].lucro + " * " + data.todasRoupas[linha].nome + " + ";
+			}else{
+				objectiveFunction += data.todasRoupas[linha].lucro + " * " + data.todasRoupas[linha].nome + ";";
+			}
+		}
+		logger.write(objectiveFunction + '\n');
+		var ultimaLinha = 0;
+		fConstraints = [];
+		var auxfObjetive = [];
+		var aux = '';
+		for(linha = 0; linha < (data.materiaisUtilizados.length); linha++){
+			auxfObjetive = [];
+			ultimaLinha = linha;
+			aux = 's.t. c' + (linha+1) + ': ';
+			for(coluna = 0; coluna < data.todasRoupas.length; coluna ++){
+				for(materiais = 0; materiais < data.todasRoupas[coluna].materiaisUsados.length; materiais++){
+					if(data.todasRoupas[coluna].materiaisUsados[materiais].nome == data.materiaisUtilizados[linha].nome) {
+						auxfObjetive.push(data.todasRoupas[coluna].materiaisUsados[materiais].quantidade + " * " + data.todasRoupas[coluna].nome);
+					}
+				}
+			}
+
+			for(auxNum = 0; auxNum < auxfObjetive.length; auxNum++) {
+				if(auxNum < auxfObjetive.length - 1) {
+					aux += auxfObjetive[auxNum] + " + ";
+				}else {
+					aux += auxfObjetive[auxNum] + " <= " +  data.materiaisUtilizados[linha].quantidade + ';';
+				}
+			}
+			if(aux != '') {
+				fConstraints.push(aux);
+				logger.write(aux + '\n');
+			}
+		}
+		ultimaLinha += 2;
+		tempoConf = 's.t. c' + ultimaLinha + ': ';
+		for(linha = 0; linha < data.todasRoupas.length; linha++) {
+			if(linha < data.todasRoupas.length - 1) {
+				tempoConf += data.todasRoupas[linha].tempoConf + ' * ' + data.todasRoupas[linha].nome + " + ";
+			}else{
+				tempoConf += data.todasRoupas[linha].tempoConf + ' * ' + data.todasRoupas[linha].nome + " <= " + data.tempoTotalConf*data.quantidadeCostu + ';';
+			}
+		}
+		fConstraints.push(tempoConf);
+		logger.write(tempoConf + '\n');
+
+		for(linha = 0; linha < data.todasRoupas.length; linha++) {
+			logger.write('s.t. c' + (linha+1+ultimaLinha) + ': ' + data.todasRoupas[linha].nome + " >= 0;\n");		
+		}
+		
+		logger.write("solve;\n");
+
+		var display = 'display ';
+		for(linha = 0; linha < data.todasRoupas.length; linha++) {
+			if(linha < data.todasRoupas.length - 1) {
+				display += data.todasRoupas[linha].nome + ", ";
+			}else{
+				display += data.todasRoupas[linha].nome + ';';
+			}			
+		}
+		logger.write(display + '\n');
+		logger.write("end;");
+		console.log(variaveis);
+		console.log(objectiveFunction);
+		console.log(fConstraints);
 
 		console.log(JSON.stringify(output,null,2));
 		res.send({optimization: respostaVetor});

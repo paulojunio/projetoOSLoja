@@ -1,0 +1,50 @@
+GLPK 4.65 - SENSITIVITY ANALYSIS REPORT                                                                         Page   1
+
+Problem:    math
+Objective:  z = 1120 (MAXimum)
+
+   No. Row name     St      Activity         Slack   Lower bound       Activity      Obj coef  Obj value at Limiting
+                                          Marginal   Upper bound          range         range   break point variable
+------ ------------ -- ------------- ------------- -------------  ------------- ------------- ------------- ------------
+     1 z            BS    1120.00000   -1120.00000          -Inf      640.00000      -1.00000        .      c7
+                                            .               +Inf     1120.00000          +Inf          +Inf
+
+     2 c1           BS      80.00000      40.00000          -Inf         .          -14.00000        .      c3
+                                            .          120.00000       80.00000          +Inf          +Inf
+
+     3 c2           BS      80.00000      20.00000          -Inf       40.00000     -12.00000     160.00000 c7
+                                            .          100.00000       80.00000          +Inf          +Inf
+
+     4 c3           NU      80.00000        .               -Inf         .          -14.00000        .      c5
+                                          14.00000      80.00000       80.00000          +Inf    1120.00000 c4
+
+     5 c4           BS      80.00000        .               -Inf         .          -14.00000        .      c3
+                                            .           80.00000       80.00000          +Inf          +Inf
+
+     6 c5           BS      16.00000     -16.00000        .                -Inf     -20.00000     800.00000 c6
+                                            .               +Inf       16.00000          +Inf          +Inf
+
+     7 c6           NL        .             .             .                -Inf          -Inf          +Inf
+                                         -40.00000          +Inf        8.00000      40.00000     800.00000 c5
+
+     8 c7           NL        .             .             .            -4.00000          -Inf    1360.00000 c2
+                                         -60.00000          +Inf        8.00000      60.00000     640.00000 c5
+
+GLPK 4.65 - SENSITIVITY ANALYSIS REPORT                                                                         Page   2
+
+Problem:    math
+Objective:  z = 1120 (MAXimum)
+
+   No. Column name  St      Activity      Obj coef   Lower bound       Activity      Obj coef  Obj value at Limiting
+                                          Marginal   Upper bound          range         range   break point variable
+------ ------------ -- ------------- ------------- -------------  ------------- ------------- ------------- ------------
+     1 Bermuda      BS      16.00000      70.00000          -Inf         .           50.00000     800.00000 c6
+                                            .               +Inf       16.00000          +Inf          +Inf
+
+     2 Jaqueta      BS        .          100.00000          -Inf         .               -Inf    1120.00000
+                                            .               +Inf        8.00000     140.00000    1120.00000 c6
+
+     3 Calca        BS        .           80.00000          -Inf         .               -Inf    1120.00000
+                                            .               +Inf        8.00000     140.00000    1120.00000 c7
+
+End of report
