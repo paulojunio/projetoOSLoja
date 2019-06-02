@@ -273,7 +273,11 @@ module.exports = {
 				display += data.todasRoupas[linha].nome + ';';
 			}			
 		}
+		for(linha = 0; linha < data.todasRoupas.length; linha++) {
+			logger.write('printf \"Valor do dual da restricao ' + (linha+1) + ': %g \\n\", c1.dual; \n');		
+		}
 		logger.write(display + '\n');
+		//logger.write(dual + "\n");
 		logger.write("end;");
 		console.log(variaveis);
 		console.log(objectiveFunction);
