@@ -1,0 +1,10 @@
+var Bermuda;
+var Jaqueta;
+maximize z:40 * Bermuda + 50 * Jaqueta;
+s.t. c1: 10 * Bermuda + 20 * Jaqueta <= 210;
+s.t. c2: 30 * Bermuda + 10 * Jaqueta <= 180;
+s.t. c3: Bermuda >= 0;
+s.t. c4: Jaqueta >= 0;
+solve;
+display Bermuda, Jaqueta;
+end;
