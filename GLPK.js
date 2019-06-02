@@ -186,7 +186,10 @@ module.exports = {
 				//respostaPronta += data.todasRoupas[linha].nome + " : " + output.result[data.todasRoupas[linha].nome] +  " Peças ";
 			}
 		}
-		
+		//Exemplo de saída para sensibilidade
+		//respostaVetor.push("Se caso queira aumentar o Jeans, Linho, os valores de Jeans podem variar entre 60 a 360, e o Linho pode variar entre 105 a 630.");
+		//respostaVetor.push("Se por exemplo a quantidade de Jeans mudar para 360 metros, a quantidade de Bermuda seria 0, e quantidade de Jaquetas seria 18.");
+
 		var fs = require('fs');
 
 		fs.unlink('math.txt', function (err) {
