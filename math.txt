@@ -7,4 +7,6 @@ s.t. c3: Bermuda >= 0;
 s.t. c4: Jaqueta >= 0;
 solve;
 display Bermuda, Jaqueta;
+printf "Valor do dual da restricao 1: %g\n", c1.dual;
+printf "Valor do dual da restricao 2: %g\n", c2.dual;
 end;
