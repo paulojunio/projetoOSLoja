@@ -8,7 +8,7 @@ Trabalho foi feito utilizando Nodejs para back-end, e React para front-end, todo
 e a biblioteca [Yasji](https://www.npmjs.com/package/yasmij) para javascript.
 
 # Desenvolvedores
-- Giovanna Avila Riquete  :octocat: [@GiovannaR](https://github.com/GiovannaR)
+- Giovanna Ávila Riqueti  :octocat: [@GiovannaR](https://github.com/GiovannaR)
 
 - Paulo Junio Reis Rodrigues :octocat: [@PauloJunio](https://github.com/paulojunio)
 
